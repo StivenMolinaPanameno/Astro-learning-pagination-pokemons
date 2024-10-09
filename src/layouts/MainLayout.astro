@@ -1,0 +1,38 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import {siteInfo} from '../consts/site-info';
+
+interface Props {
+    title?: string;
+	image?: string;
+	description?: string;
+}
+
+const {title = siteInfo.title, description = siteInfo.description, image} = Astro.props;
+---
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description}>
+
+		<!-- OG METATAGS O -->
+		<meta name="og:title" content={title}>
+		<meta name="author" content="Ángel Stiven Molina Panameño">
+		<meta name="og:description" content={description}>
+		<meta name="og:image" content={image}>
+
+
+		<title>{title}</title>
+		<ViewTransitions></ViewTransitions>
+	</head>
+	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
+        <main class="mt-10">
+			<slot></slot>
+		</main>
+	</body>
+</html>
